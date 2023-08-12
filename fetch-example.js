@@ -2,10 +2,18 @@ const url = "./api/peoples.json";
 
 const btn = document.querySelector(".btn");
 
-btn.addEventListener("click", async () => {
-  const response = await fetch(url);
-  const data = await response.json();
-  displayItems(data);
+btn.addEventListener("click", () => {
+  fetch(url)
+    .then((resp) => {
+      return resp.json();
+    })
+    .then((data) => {
+      displayItems(data);
+      console.log(data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 });
 
 const displayItems = (data) => {
